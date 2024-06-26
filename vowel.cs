@@ -29,16 +29,24 @@ namespace Glasnye
         
         void Jopa(string text)
         {
+            int vCount = 0; // общее кол-во гласных
             foreach (char c in text)
             {
                 if (vowelCounts.ContainsKey(c))
+                {
                     vowelCounts[c]++;
+                    vCount++;
+                }
             }
             string message = "Количество гласных в тексте:\n";
-            foreach (var vowel in vowelCounts)
+            foreach (KeyValuePair<char,int> vowel in vowelCounts)
             {
-                if (vowel.Value > 0)
-                    message += $"{vowel.Key}: {vowel.Value}\n";
+                if (vowel.Value > 0) 
+                { message += $"{vowel.Key}: {vowel.Value}\n"; }
+            }
+            if (vCount == 0)
+            {
+                message = "Гласных нет";
             }
             MessageBox.Show(message);
         }
